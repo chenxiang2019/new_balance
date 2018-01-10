@@ -30,7 +30,7 @@ def main():
 	print output
         if status != 0:
                 print "\nError: switch cannot be reset!\n"
-                print output
+		return
 
 
 	# Populate runtime rules
@@ -48,7 +48,7 @@ def main():
 		print output
 		if status != 0:
 			print "\nError: cannot set path in switch%d!\n" % (thriftPort-_THRIFT_BASE_PORT+1)
-			print output
+			return
 
 if __name__ == '__main__':
 	main()
