@@ -167,7 +167,7 @@ table l3_forward {
 	}
 	actions {
 		_nop; _drop; forward;
-        update_sw1; update_sw2;
+		update_sw1; update_sw2;
 	}
 }
 

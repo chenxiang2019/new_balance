@@ -1,0 +1,1 @@
+table_set_default l3_forward nop
