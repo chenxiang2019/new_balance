@@ -1,0 +1,15 @@
+Task of SDN Course: Realizing Load Balancer
+
+Introduction: TBD
+
+For running this demo, you are required to open four terminals at least.
+
+Terminal 1: 
+  * ./run_14_demo.sh
+Terminal 2: 
+  * ./set_path.py -p 1
+Terminal 3:
+  * ./controller.py -p 10
+Terminal 4:
+  * ./utils/sender.py           // you could see path scheduling in the console of controller
+  * ./utils/low_rate_sender.py  // nothing happened
