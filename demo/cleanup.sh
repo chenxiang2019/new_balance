@@ -4,4 +4,5 @@ rm -rf *.pcap
 rm -rf build/
 rm -rf *~
 rm -rf switch.json
+rm -rf pkt_number.txt
 sudo mn -c

@@ -1,1 +1,1 @@
-counter_reset pkt_cnt 0
+counter_reset pkt_cnt 
