@@ -25,7 +25,7 @@ SWITCH_PATH=$BMV2_PATH/targets/simple_switch/simple_switch
 CLI_PATH=$THIS_DIR/simple_switch_CLI
 
 $P4C_BM_SCRIPT p4src/switch.p4 --json switch.json
-sudo PYTHONPATH=$PYTHONPATH:$BMV2_PATH/mininet/ python script/topo.py \
+sudo PYTHONPATH=$PYTHONPATH:$BMV2_PATH/mininet/ python scripts/topo.py \
     --behavioral-exe $SWITCH_PATH \
     --json switch.json \
     --cli $CLI_PATH \
