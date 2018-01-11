@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys
+import time
 import struct
 import argparse
 import commands
@@ -18,6 +19,7 @@ def main():
 	for i in range(num):
 		p = Ether(src="00:00:00:00:00:01", dst="00:00:00:00:00:02") / IP(src="10.0.0.1", dst="10.0.0.2") / UDP(dport=340) / "Nothing's Gonna Change My Love For You"
 		sendp(p, iface = iface, verbose = 0)
+		time.sleep(0.5)
 
 if __name__ == '__main__':
 	main()

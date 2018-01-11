@@ -11,8 +11,8 @@ from read_counter import *
 from scripts.definitions import *
 
 parser = argparse.ArgumentParser(description='SDN & P4 Demo')
-parser.add_argument('-p', '--packets', help='packet threshold',
-                    type=int, action="store", default=1)
+parser.add_argument('-p', '--packets', help='threshold: packet/s',
+                    type=int, action="store", default=100)
 args = parser.parse_args()
 
 thrift_base = 22222
@@ -20,6 +20,14 @@ l2_sw_ports = [22223, 22226]
 l3_sw_ports = [22224, 22225]
 
 paths = [[2,3],[2,3],[2,4],[2,4],[5,3],[5,3],[5,4],[5,4]]
+
+def reset_all_counters(swnum=5):
+	for i in range(swnum):
+		cmd = "sudo ./reset_counter.sh %d" % (i+thrift_base)
+                status, output = commands.getstatusoutput(cmd)
+                if status != 0:
+                        print "Error: cannot reset counter of sw%d" % (i+1)
+                        return
 
 def main():
 	global CURRENT_L2_SW
@@ -50,6 +58,7 @@ def main():
                         break
 	
 	if flag1 == False and flag2 == False:
+		reset_all_counters()
 		return
 
 	tgtl2sw.remove(l2swid)
@@ -80,17 +89,7 @@ def main():
 		CURRENT_L2_SW, CURRENT_L3_SW = newl2sw, newl3sw
 
 		# reset counters 
-		cmd1 = "sudo ./reset_counter.sh %d" % (l2swid-1+thrift_base)
-		cmd2 = "sudo ./reset_counter.sh %d" % (l3swid-1+thrift_base)
-
-		status, output = commands.getstatusoutput(cmd1)
-                if status != 0:
-                        print "Error: cannot reset counter of sw%d" % l2swid
-                        return
-                status, output = commands.getstatusoutput(cmd2)
-                if status != 0:
-                        print "Error: cannot reset counter of sw%d" % l3swid
-                        return
+		reset_all_counters()
 
 	elif flag1 == True and flag2 == False:
 		newl2sw_idx = random.randint(0, len(tgtl2sw)-1)
@@ -111,12 +110,7 @@ def main():
 		CURRENT_L2_SW, CURRENT_L3_SW = newl2sw, newl3sw
 
 		# reset counters 
-                cmd1 = "sudo ./reset_counter.sh %d" % (l2swid-1+thrift_base)
-
-                status, output = commands.getstatusoutput(cmd1)
-                if status != 0:
-                        print "Error: cannot reset counter of sw%d" % l2swid
-                        return
+		reset_all_counters()
 
 	elif flag1 == False and flag2 == True:
                 newl2sw = CURRENT_L2_SW
@@ -137,20 +131,16 @@ def main():
                 CURRENT_L2_SW, CURRENT_L3_SW = newl2sw, newl3sw
 
 		# reset counters 
-                cmd2 = "sudo ./reset_counter.sh %d" % (l3swid-1+thrift_base)
-
-                status, output = commands.getstatusoutput(cmd2)
-                if status != 0:
-                        print "Error: cannot reset counter of sw%d" % l3swid
-                        return
+		reset_all_counters()
 
 	else:
-		pass
+		reset_all_counters()
 
 if __name__ == '__main__':
     try:
         while True: 
 		main()
+		sleep(1)
     except KeyboardInterrupt:
         print 'User Interrupted'
         try:
