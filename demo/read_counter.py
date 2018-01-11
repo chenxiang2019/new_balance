@@ -6,14 +6,7 @@ import argparse
 import commands
 from time import sleep
 
-parser = argparse.ArgumentParser(description='SDN & P4 Demo')
-parser.add_argument('-p', '--thrift_port', help='Thrift Port',
-                    type=int, action="store", default=1)
-args = parser.parse_args()
-
-def read_counter():
-	thrift_port = args.thrift_port
-
+def read_counter(thrift_port):
 	"""read counter"""
         cmd = "sudo ./read_counter.sh %d > pkt_number.txt" % thrift_port
         status, output = commands.getstatusoutput(cmd)
