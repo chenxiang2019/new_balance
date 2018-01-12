@@ -1,6 +1,7 @@
 Task of SDN Course: Realizing Load Balancer
 
-Introduction: TBD
+Introduction: 
+  This demo introduces a simple load balancer application which schedules traffics based on packet rate. At runtime, the P4 switches counts the processed packets and the controller dynamically queries the packet number per second in order to calculate the packet rate. If the calculated packet rate of one assigned switch is over the threshold(packet/second), the controller would schedules the traffic to other pathes to offload the tasks of this switch.
 
 For running this demo, you are required to open four terminals at least.
 
@@ -13,3 +14,5 @@ Terminal 3:
 Terminal 4:
   * ./utils/sender.py           // you could see path scheduling in the console of controller
   * ./utils/low_rate_sender.py  // nothing happened
+
+Author: Wasdns
