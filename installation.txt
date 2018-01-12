@@ -1,0 +1,5 @@
+For running this demo, you should install all the following softwares:
+* mininet
+* bmv2, version >= 1.8.0
+* p4c-bm
+* scapy, version >= 2.3.3
