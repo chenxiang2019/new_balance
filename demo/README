@@ -12,12 +12,15 @@ For running this demo, you are required to open three terminals at least.
 
 Terminal 1: 
   * ./run_14_demo.sh
+
 Terminal 2: 
   * ./set_path.py -p 1          // set the default paths
   * ./controller.py -p 10 -i 3  // '-p' means the threshold(pkt/s), '-i' means the inspection interval(s)
+
 Terminal 3:
   * ./utils/sender.py           // you could see path scheduling in the console of controller
   * ./utils/low_rate_sender.py  // nothing happened
+
 [option]Terminal 4:
   * ./utils/listener.py         // this script listens to all the potential ports, you could also assign port using '-p'
 
